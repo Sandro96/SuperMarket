@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Presentacion.Models.ProductoModel>
+
+@{
+    ViewBag.Title = "Productos deshabilitados";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+@if (unUsuario != null && unUsuario.Administrador)
+{
+    <h2>Productos deshabilitados</h2>
+    <hr />
+
+
+    <table class=table border="1" style="width:100%">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Identificador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.ActionLink("Habilitar", "HabilitarProducto", new { Identificador = item.Identificador })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1> No tienes permiso para entrar a esta pagina.</h1>
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Presentacion.Models.ClienteModel>
+
+@{
+    ViewBag.Title = "Clientes deshabilitados";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+@if (unUsuario != null && unUsuario.Administrador)
+{
+    <h2>Clientes deshabilitados</h2>
+    <hr />
+    <table class=table border="1" style="width:100%">
+        <tr>
+            <th>
+                Cedula de identidad
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </th>
+            <th>
+                Fecha de nacimiento
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ci)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Domicilio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento.Day)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Month)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Year)
+                </td>
+                <td>
+                    @Html.ActionLink("Habilitar", "HabilitarCliente", new { Ci = item.Ci })
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
+else
+{
+    <h1>No tienes permiso para entrar a esta pagina.</h1>
+}

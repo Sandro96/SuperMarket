@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Presentacion.Models.ProductoModel>
+
+@{
+    ViewBag.Title = "Lista de productos";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+
+<h2>Lista de productos</h2>
+<hr />
+@if(unUsuario != null && unUsuario.Administrador)
+{
+<table class=table border="1" style="width:100%">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+            @Html.ActionLink("Deshabilitar", "HabilitarProducto", new { Identificador = item.Identificador })
+            </td>
+        </tr>
+    }
+
+</table>
+}
+else
+{
+    <table class=table border="1" style="width:100%">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Identificador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+            </tr>
+        }
+
+    </table>
+}

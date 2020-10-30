@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Tipos de productos";
+}
+
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+
+<!--Iconos de Google-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<h1>Seleccione una opción.</h1>
+<hr />
+@if(unUsuario != null && unUsuario.Administrador)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Crear producto</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Producto/CrearProducto"><i class="material-icons" style="color:black; font-size:500%;">monetization_on</i>;<i class="material-icons" style="color:white; font-size:500%;">add</i></a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Lista de productos</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Producto/ListaProducto"><i class="material-icons" style="color:black; font-size:500%;">monetization_on</i>;<i class="material-icons" style="color:white; font-size:500%;">assignment</i></a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Lista de deshabilitados</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Producto/ProductosDeshabilitados"><i class="material-icons" style="color:black; font-size:500%;">monetization_on</i>;<i class="material-icons" style="color:white; font-size:500%;">do_not_disturb</i></a></p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Crear producto</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Producto/CrearProducto"><i class="material-icons" style="color:black; font-size:500%;">monetization_on</i>;<i class="material-icons" style="color:white; font-size:500%;">add</i></a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Lista de productos</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Producto/ListaProducto"><i class="material-icons" style="color:black; font-size:500%;">monetization_on</i>;<i class="material-icons" style="color:white; font-size:500%;">assignment</i></a></p>
+        </div>
+    </div>
+}

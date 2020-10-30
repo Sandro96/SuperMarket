@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Presentacion.Models.ClienteModel>
+
+@{
+    ViewBag.Title = "Lista de clientes";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+<h2>Lista de clientes</h2>
+<hr />
+
+@if (unUsuario != null && unUsuario.Administrador)
+{
+    <table class=table border="1" style="width:100%; color:white">
+        <tr>
+            <th>
+                Cedula de identidad
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </th>
+            <th>
+                @Html.DisplayName("Fecha de nacimiento")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ci)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Domicilio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento.Day)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Month)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Year)
+                </td>
+                <td>
+                    @Html.ActionLink("Deshabilitar", "HabilitarCliente", new { Ci = item.Ci })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <table class=table border="1" style="width:100%; color:white">
+        <tr>
+            <th>
+                Cedula de identidad
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </th>
+            <th>
+                @Html.DisplayName("Fecha de nacimiento")
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ci)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Domicilio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento.Day)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Month)/@Html.DisplayFor(modelItem => item.FechaNacimiento.Year)
+                </td>
+            </tr>
+        }
+    </table>
+}

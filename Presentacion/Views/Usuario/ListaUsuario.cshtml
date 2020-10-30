@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Presentacion.Models.UsuarioModel>
+
+@{
+    ViewBag.Title = "Lista de usuario";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+
+@if (unUsuario != null && unUsuario.Administrador)
+{
+<h2>Lista de usuario</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            Contraseña
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Administrador)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contrasena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrador)
+            </td>
+        </tr>
+    }
+
+</table>
+}
+else
+{
+    <h1>No tienes permiso para entrar a esta pagina.</h1>
+}

@@ -1,0 +1,74 @@
+﻿@model Presentacion.Models.FacturaModel
+
+@{
+    ViewBag.Title = "DetalleFactura";
+}
+
+<h2>Detalle de factura</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            Cedula de identidad
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha.Day)/@Html.DisplayFor(model => model.Fecha.Month)/@Html.DisplayFor(model => model.Fecha.Year)
+        </dd>
+    </dl>
+</div>
+
+@foreach (Presentacion.Models.DetalleModel a in Model.ListaDetalle)
+{
+    <table class=table border="1" style="width:100%">
+        <tr>
+            <th>
+                Identificador
+            </th>
+            <th>
+                Cantidad
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @a.Identificador
+            </td>
+            <td>
+                @a.Cantidad
+            </td>
+        </tr>
+    </table>
+}

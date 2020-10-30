@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Tipos de usuarios";
+}
+@{
+    Presentacion.Models.UsuarioModel unUsuario = (Presentacion.Models.UsuarioModel)Session["Usuario"];
+}
+<!--Iconos de Google-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+@if (unUsuario != null && unUsuario.Administrador)
+{
+    <h1>Seleccione una opción.</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Crear usuario</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Usuario/CrearUsuario"><i class="material-icons" style="color:black; font-size:500%;">account_box</i>;<i class="material-icons" style="color:white; font-size:500%;">add</i></a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Lista de usuarios</h2>
+            <p><a class="btn btn-default" href="http://localhost:59351/Usuario/ListaUsuario"><i class="material-icons" style="color:black; font-size:500%;">account_box</i>;<i class="material-icons" style="color:white; font-size:500%;">assignment</i></a></p>
+        </div>
+    </div>
+}
+else
+{
+    <h1>No tienes permiso para entrar a esta pagina.</h1>
+}

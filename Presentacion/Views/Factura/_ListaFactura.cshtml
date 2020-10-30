@@ -1,0 +1,44 @@
+﻿@model Presentacion.Models.FacturaModel
+
+@using (Html.BeginForm("GuardarFactura", "Factura"))
+{
+    <!--Mantenemos las propiedades del modelo-->
+    @Html.HiddenFor(m => m.Cantidad)
+    @Html.HiddenFor(m => m.Identificador)
+    @Html.HiddenFor(m => m.Numero_Cliente)
+    @Html.HiddenFor(m => m.Total)
+    @Html.HiddenFor(m => m.Usuario)
+
+    <!--Creamos la tabla que mostraremos-->
+    <table class="table">
+        <tr>
+            <th>@Html.Label("Cantidad")</th>
+            <th>@Html.Label("Identificador")</th>
+        </tr>
+
+
+        @for (int i = 0; i < Model.ListaDetalle.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayTextFor(m => m.ListaDetalle[i].Cantidad)
+                    @Html.HiddenFor(m => m.ListaDetalle[i].Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(m => m.ListaDetalle[i].Identificador)
+                    @Html.HiddenFor(m => m.ListaDetalle[i].Identificador)
+                </td>
+                
+            </tr>
+        }
+
+        <p><strong>Total: @Model.Total</strong></p>
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+

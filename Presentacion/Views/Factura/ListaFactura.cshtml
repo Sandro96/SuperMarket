@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Presentacion.Models.FacturaModel>
+
+@{
+    ViewBag.Title = "ListaFactura";
+}
+
+<h2>Lista de facturas</h2>
+
+<table class=table border="1" style="width:100%">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            Cedula de identidad
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero_Cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha.Day)/@Html.DisplayFor(modelItem => item.Fecha.Month)/@Html.DisplayFor(modelItem => item.Fecha.Year)
+        </td>
+        <td>
+            @Html.ActionLink("Detalles", "DetalleFactura", new { NumeroFactura = item.Numero})
+        </td>
+    </tr>
+}
+
+</table>

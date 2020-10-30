@@ -1,0 +1,89 @@
+﻿@model Presentacion.Models.ClienteModel
+
+@{
+    ViewBag.Title = "Crear un cliente";
+}
+<!--JQuery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--Estilo del datepicker-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
+<!--Script del datepicker-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
+<!--Llamamos a la activacion y al formato del datepicker que creamos-->
+@*<script src="~/Content/Calendario.js"></script>*@
+<h2 style="color:white">Crear un cliente</h2>
+
+
+<style>
+    body {
+        background-image: url(../../Content/img/Background.jpg);
+        background-size: cover;
+        color: black;
+    }
+</style>
+
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="color:white">
+            @Html.LabelFor(model => model.Ci, "Cedula de identidad" , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Ci, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ci, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="color:white">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" >
+                @Html.TextBoxFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="color:white">
+            @Html.LabelFor(model => model.Domicilio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Domicilio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Domicilio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="color:white">
+            @Html.LabelFor(model => model.FechaNacimiento,"Fecha de nacimiento" , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <!--Agregamos el id fecha a htmlAttributes para que se active el DateTimePicker-->
+                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control", @id = "lala" } })
+                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $.fn.datepicker.defaults.format = "yyyy/mm/dd";
+    $('.datepicker').datepicker({
+        startDate: '-3d'
+    })
+    $(document).ready(function () {
+        $('#lala').datepicker();
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
